@@ -122,3 +122,11 @@ header h1 {
 .hiscores {
     text-align: center;
 }
+
+/*hide these sections until called on in the js file*/
+#questions,
+#correct-wrong,
+#final-score,
+#hiscores{
+    display: none;  
+  } 
