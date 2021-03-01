@@ -15,7 +15,7 @@
         <div>
             <!--high score-->
             <div class="hiscore">
-                <button id="view-hiscore" type="button" class="btn">View High Score</button>
+                <button id="view-hiscore" type="button" class="">View High Score</button>
             </div>
             <!--timer function-->
             <div>
@@ -24,7 +24,7 @@
         </div>
     </header>
 
-    <!--main content for the questions and quiz intro-->
+                                                        <!--main content for the questions and quiz intro-->
     <main>
         <section id="intro" class="intro">
             <h1>Welcome to the Javascript Quiz Challenge</h1>
@@ -32,6 +32,43 @@
                 Wrong answers will subtract 10 seconds from your score.
             </p>
             <button id="start" type="button">Start Quiz!</button>
+        </section>
+                                                                   <!--quiz questions and answers-->
+        <section id="questions" class="questions">
+            <h2>Question go here</h2>
+            <ul>
+                <li>
+                    <button id="asw1" type="button" class="btn">answer1</button>
+                </li>
+                <li>
+                    <button id="asw2" type="button" class="btn">answer2</button>
+                </li>
+                <li>
+                    <button id="asw3" type="button" class="btn">answer3</button>
+                </li>
+                <li>
+                    <button id="asw4" type="button" class="btn">answer4</button>
+                </li>
+            </ul>
+        </section>
+                                                              <!--player inputs intials to save hiscore here-->
+        <section id="final-score" class="final-score">
+            <div>
+                <h2>Complete!</h2>
+                <p>Your final score is: <span id="player-score">0</span></p>
+                <p>Enter your initials:<input placeholder="initials" id="initial-input"/>
+                <button id="score-submit" class="btn">Submit score</button></p>
+            </div>
+        </section>
+                                                            <!--high scores from the game will be here-->
+        <section id="hiscores" class="hiscores">
+            <div>
+                <h2>High Scores</h2>
+                <ol id="hiscore-list">
+                    <!--list tems created in js to display here-->
+                </ol>
+                <button id="play-again" class="btn">Restart Quiz</button>
+            </div>
         </section>
 
     </main>

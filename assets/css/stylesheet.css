@@ -22,6 +22,18 @@ header {
 
 }
 
+header button {
+    background-color: transparent;
+    text-decoration: none;
+    border: 0px solid #ffffff;
+
+}
+
+header button:hover {
+    border-bottom: 1px solid white;
+    cursor: crosshair;
+}
+
 header h1 {
     font-size: 50px;
     font-family: elliotsixregular;
@@ -42,7 +54,7 @@ header h1 {
 }
 
 
-                                                  /* main section */
+                                                  /* main section intro to the quiz */
 
 .intro {
     text-align: center;
@@ -71,4 +83,42 @@ header h1 {
 .intro button:hover {
     background-color: rgb(162, 157, 231);
     cursor: crosshair;
+}
+
+.btn {
+    font-size: large;
+    background-color: rgb(114, 105, 248);
+    padding: 7px;
+    border-radius: 12px;
+    cursor: crosshair;
+}
+
+.btn:hover {
+    background-color: rgb(162, 157, 231);
+    cursor: crosshair;
+}
+                                                            /* quiz questions & answers*/
+.questions {
+    text-align: center;
+    padding-top: 40px;
+}
+
+.questions button {
+    margin: 10px;
+    padding: 10px;
+
+}
+
+.questions ul {
+    margin-top: 20px;
+}
+
+                                                                  /* submit score */
+.final-score {
+    text-align: center;
+}
+
+                                                                   /*hiscore list*/
+.hiscores {
+    text-align: center;
 }
