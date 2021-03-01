@@ -4,12 +4,37 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JavaScript Quiz</title>
+    <title>JavaScript Quiz Challenge</title>
     <link rel="shortcut icon" type="image/jpg" href="./assets/images/favicon.ico"/>
     <link rel="stylesheet" href="./assets/css/stylesheet.css">
+    <link rel="stylesheet" href="./assets/css/font.css">
 </head>
 <body>
-    
+    <header>
+        <h1>JAVASCRIPT CHALLENGE</h1>
+        <div>
+            <!--high score-->
+            <div class="hiscore">
+                <button id="view-hiscore" type="button" class="btn">View High Score</button>
+            </div>
+            <!--timer function-->
+            <div>
+                <p class="timer"  id="timer">Time: 80s</p>
+            </div>
+        </div>
+    </header>
+
+    <!--main content for the questions and quiz intro-->
+    <main>
+        <section id="intro" class="intro">
+            <h1>Welcome to the Javascript Quiz Challenge</h1>
+            <p>Try to answer the following questions before the timer runs out.<br> 
+                Wrong answers will subtract 10 seconds from your score.
+            </p>
+            <button id="start" type="button">Start Quiz!</button>
+        </section>
+
+    </main>
 
 <script src="./assets/js/script.js"></script>    
 </body>
