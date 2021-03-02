@@ -77,3 +77,32 @@ var questions = [
     }
 ];
 
+
+/////////////////starts the quiz/////////////////////////////
+function startQuiz() {
+    introEl.style.display = "none"; //removes intro screen and start button
+    questionsEl.style.display = "block" // reveals the questions html
+
+    secondsLeft = 70; //starting time when quiz start
+
+        var timerInterval = setInterval(function() {
+            secondsLeft--;
+            timerEl.textContent = "Time: " + secondsLeft + "s";
+            
+            if (secondsLeft === 0) {
+                clearInterval(timerInterval);
+
+            }
+        },1000);
+}
+
+
+
+
+
+
+////////////////////////event listeners//////////////////////
+startBtn.addEventListener("click", function(){
+    startQuiz()
+})
+
