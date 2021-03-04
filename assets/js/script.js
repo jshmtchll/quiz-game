@@ -30,12 +30,14 @@ var userAnswer
 //post quiz section
 var scoreEl = document.querySelector("#final-score");
 var playerScore = document.querySelector("#player-score");
-var playerInitials = document.querySelector("#initials-input");
+var playerInitials = document.querySelector("#initial-input");
 
 //displays scores after user input inititals
 var viewHighscoresEl = document.querySelector("#hiscores");
 var highscoreListEl = document.querySelector("#hiscore-list");
-var highscoreList = [];
+var highScoreArray = [];
+
+var timerInterval; //declared here so i can stop it later in stopTimer()
 
 var questions = [ 
     
@@ -49,7 +51,7 @@ var questions = [
     },  
     {
         question: "Where is the correct place to insert a JavaScript?",
-        answers: ["1. The <body> section", 
+        answers: ["1. The <body> section",
                   "2. Both the <head> section and the <body> sections",
                   "3. The <head> section",
                   "4. The <footer> section"],
@@ -89,7 +91,7 @@ function startQuiz() {
 
     secondsLeft = 60; //starting time when quiz start
 
-        var timerInterval = setInterval(function() {
+         timerInterval = setInterval(function() {
             secondsLeft--;
             timerEl.textContent = "Time: " + secondsLeft + "s";
             
@@ -104,55 +106,92 @@ function startQuiz() {
 
 ///////////////////////function for displaying the questions to tha page////////////
 function displayQuestions() {
-    questionEl.innerHTML = questions[quizQuestions].question;
-    asw1Btn.innerHTML = questions[quizQuestions].answers[0];
-    asw2Btn.innerHTML = questions[quizQuestions].answers[1];
-    asw3Btn.innerHTML = questions[quizQuestions].answers[2];
-    asw4Btn.innerHTML = questions[quizQuestions].answers[3];
+    
+    if (questions[quizQuestions] === undefined) {
+        UserHighScore()
+        
+    }
+
+    questionEl.textContent = questions[quizQuestions].question;
+    asw1Btn.textContent = questions[quizQuestions].answers[0];
+    asw2Btn.textContent = questions[quizQuestions].answers[1];
+    asw3Btn.textContent = questions[quizQuestions].answers[2];
+    asw4Btn.textContent = questions[quizQuestions].answers[3];
 
     asw1Btn.onclick = function(event){
-        quizQuestions ++;
-        displayQuestions()
         checkAnswer(event)
-        
-        
     };
     asw2Btn.onclick = function(event){
-        quizQuestions ++;
-        displayQuestions()
         checkAnswer(event)
-
-    };
+     };
     asw3Btn.onclick = function(event){
-        quizQuestions ++;
-        displayQuestions()
         checkAnswer(event)
     };
     asw4Btn.onclick = function(event){
-        quizQuestions ++;
-        displayQuestions()
         checkAnswer(event)
     };
     
-    if (questions[quizQuestions] === undefined) {
-        window.alert("quiz over");
-    }
+    
 
 }
 
 ////check if answer is correct
 function checkAnswer(event) {
     
-   userAnswer = event.target.innerHTML
+   userAnswer = event.target.textContent
    console.log(userAnswer);
+   event.preventDefault();
 
-    if (userAnswer === questions[quizQuestions]["correctAnswer"]) {
-        secondsLeft += 5
-    }else {
-        secondsLeft -= 10
+   correctWrong.style.display = "block";  //displayed user notif div and appands a <p> to it
+   var p = document.createElement("p");
+   correctWrong.appendChild(p);
+
+    if (questions[quizQuestions].correctAnswer === userAnswer) {
+        secondsLeft += 5;     //add 5s & notify user
+        p.textContent = "Correct! +5s"
+
+    }else if (questions[quizQuestions].correctAnswer !== userAnswer) {
+        secondsLeft -= 10;    //deduct 10s & notify user
+        p.textContent = "Wrong! -10s"
     }
     
-    console.log(secondsLeft);
+    if (quizQuestions < questions.length) {
+        quizQuestions++;
+        displayQuestions();
+    }
+}
+//high score submit function
+function UserHighScore() {
+    scoreEl.style.display = "block";
+    viewHighscoresEl.style.display = "block";
+    questionsEl.style.display = "none";
+
+    stopTimer();
+    
+
+    playerScore.textContent = secondsLeft; //displays user score
+    
+    var userInitials = playerInitials.value.toUpperCase(); //captures users initials and forces uperrcase
+    console.log(userInitials);
+
+    if (userInitials === 0 || userInitials === null) { //doesn't work
+        alert("Please enter your initials")
+    }
+
+ highScoreArray.push({ initials: userInitials, score: secondsLeft });
+    console.log (highScoreArray);
+
+    highscoreListEl.innerHTML = "";
+    for (var i = 0; i < highScoreArray.length; i++) {
+        var li = document.createElement("li");
+        li.textContent = "Initials: " + highScoreArray[i].initials + "   Score: " + highScoreArray[i].score;
+        highscoreListEl.appendChild(li);
+    }
+
+}
+
+function stopTimer() {
+    clearInterval(timerInterval); 
 }
 
 
@@ -165,4 +204,7 @@ function checkAnswer(event) {
 startBtn.addEventListener("click", function(){
     startQuiz()
 })
+
+submitBtn.addEventListener("click", UserHighScore)
+
 
