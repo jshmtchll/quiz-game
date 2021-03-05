@@ -97,7 +97,7 @@ function startQuiz() {
             
             if (secondsLeft === 0) {
                 clearInterval(timerInterval);
-
+                //go to end highscore function
             }
         },1000);
 
@@ -146,6 +146,10 @@ function checkAnswer(event) {
    var p = document.createElement("p");
    correctWrong.appendChild(p);
 
+   setTimeout(function () {
+    p.style.display = 'none';
+   }, 1300);
+
     if (questions[quizQuestions].correctAnswer === userAnswer) {
         secondsLeft += 5;     //add 5s & notify user
         p.textContent = "Correct! +5s"
@@ -157,8 +161,13 @@ function checkAnswer(event) {
     
     if (quizQuestions < questions.length) {
         quizQuestions++;
-        displayQuestions();
+        
     }
+
+    
+    setTimeout(displayQuestions, 2000);
+    
+
 }
 //high score submit function
 function UserHighScore() {
@@ -174,9 +183,9 @@ function UserHighScore() {
     var userInitials = playerInitials.value.toUpperCase(); //captures users initials and forces uperrcase
     console.log(userInitials);
 
-    if (userInitials === 0 || userInitials === null) { //doesn't work
-        alert("Please enter your initials")
-    }
+    //  if (!playerInitials) { 
+    //      alert("Please enter your initials")
+    //  }
 
  highScoreArray.push({ initials: userInitials, score: secondsLeft });
     console.log (highScoreArray);
