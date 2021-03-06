@@ -8,7 +8,7 @@ A javascript quiz/game to test a users knowledge in Javascript
 [Javascript Challenge](https://jshmtchll.github.io/quiz-game/)
 
 ## Screenshots
-![JavaScript Challenge]()
+![JavaScript Challenge](assets/images/javascriptchallenge.gif)
 
 ## Code 
 * HTML
