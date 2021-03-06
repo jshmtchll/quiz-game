@@ -162,10 +162,16 @@ function checkAnswer(event) {
         p.textContent = "Wrong 👎 -10s"
     }
     
+    if (secondsLeft < 0) {
+        secondsLeft === 0;
+    }
+    
     if (quizQuestions < questions.length) {
         quizQuestions++;
         
     }
+
+    
 
     
     setTimeout(displayQuestions, 2000); //adds 2s between questions so user can see right or wrong
@@ -227,6 +233,14 @@ function getStorage() {
         console.log(highScoreArray);
     }
     
+    highScoreArray = highScoreArray.sort((a, b) => { //sorts the high scores when you view high scores
+        if (a.score < b.score) {
+          return 1;
+        } else {
+          return -1;
+        }
+      });
+    
     for (var i = 0; i < highScoreArray.length; i++) {
         var li = document.createElement("li");
         li.textContent = "Initials: " + highScoreArray[i].initials + " ------------ " + " Score: " + highScoreArray[i].score;
@@ -248,7 +262,10 @@ function stopTimer() {
 ////////////////////////event listeners//////////////////////
 startBtn.addEventListener("click", startQuiz)
 
-submitBtn.addEventListener("click", savingScore)
+submitBtn.addEventListener("click", function() {
+    savingScore();
+    document.getElementById("score-submit").disabled = true; //allows user to submit score only once
+}) 
 
 restartBtn.addEventListener("click", function () {
     window.location.href="../index.html"
@@ -257,9 +274,10 @@ restartBtn.addEventListener("click", function () {
 viewHighscores.addEventListener("click", function() {
     introEl.style.display = "none"
     viewHighscoresEl.style.display = "block";
+    document.getElementById("view-hiscore").disabled = true; //disables button after clicking to avoid rewritting the highscores to page
     getStorage();
 
-} )
+})
 
 clearBtn.addEventListener("click", function() {
     localStorage.clear();

@@ -28,6 +28,7 @@ header button {
     background-color: transparent;
     text-decoration: none;
     border: 0px solid #ffffff;
+    outline: none;
 
 }
 
