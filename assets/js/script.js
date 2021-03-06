@@ -268,7 +268,7 @@ submitBtn.addEventListener("click", function() {
 }) 
 
 restartBtn.addEventListener("click", function () {
-    window.location.href="../index.html"
+    window.location.href="https://jshmtchll.github.io/quiz-game/"
 });
 
 viewHighscores.addEventListener("click", function() {
