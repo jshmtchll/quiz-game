@@ -15,6 +15,7 @@ var asw3Btn = document.querySelector("#asw3");
 var asw4Btn = document.querySelector("#asw4");
 var submitBtn = document.querySelector("#score-submit");
 var restartBtn = document.querySelector("#play-again");
+var clearBtn = document.querySelector("#clear-scores");
 
 //q&a section
 var questionsEl = document.querySelector("#questions");
@@ -98,7 +99,7 @@ function startQuiz() {
             
             if (secondsLeft === 0) {
                 clearInterval(timerInterval);
-                //go to end highscore function
+                UserHighScore();
             }
         },1000);
 
@@ -153,11 +154,12 @@ function checkAnswer(event) {
 
     if (questions[quizQuestions].correctAnswer === userAnswer) {
         secondsLeft += 5;     //add 5s & notify user
-        p.textContent = "Correct! +5s"
+        p.textContent = "Correct 👍 +5s"
 
     }else if (questions[quizQuestions].correctAnswer !== userAnswer) {
         secondsLeft -= 10;    //deduct 10s & notify user
-        p.textContent = "Wrong! -10s"
+        p.style.color = "red";
+        p.textContent = "Wrong 👎 -10s"
     }
     
     if (quizQuestions < questions.length) {
@@ -243,6 +245,23 @@ submitBtn.addEventListener("click", savingScore)
 restartBtn.addEventListener("click", function () {
     window.location.href="../index.html"
 });
+
+viewHighscores.addEventListener("click", function() {
+    introEl.style.display = "none"
+    viewHighscoresEl.style.display = "block";
+    getStorage();
+
+} )
+
+clearBtn.addEventListener("click", function() {
+    localStorage.clear();
+    clearBtn.innerHTML = "<b>Highscores Cleared!</b>";
+    setTimeout(function () {
+        clearBtn.textContent = "Clear Highscores";
+       }, 1700);
+    
+
+})
 
 
 
