@@ -208,6 +208,7 @@ function UserHighScore() {
     }
     //add or get stored highscores from storage
     addToStorage();
+   
     
 }
 
@@ -224,6 +225,13 @@ function getStorage() {
     if (storedHighScores !== null) {
         highScoreArray = storedHighScores;
         console.log(highScoreArray);
+    }
+    
+    for (var i = 0; i < highScoreArray.length; i++) {
+        var li = document.createElement("li");
+        li.textContent = "Initials: " + highScoreArray[i].initials + " ------------ " + " Score: " + highScoreArray[i].score;
+        highscoreListEl.appendChild(li);
+
     }
 }
 
@@ -255,6 +263,7 @@ viewHighscores.addEventListener("click", function() {
 
 clearBtn.addEventListener("click", function() {
     localStorage.clear();
+    highscoreListEl.innerHTML = "";
     clearBtn.innerHTML = "<b>Highscores Cleared!</b>";
     setTimeout(function () {
         clearBtn.textContent = "Clear Highscores";

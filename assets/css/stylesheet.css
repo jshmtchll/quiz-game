@@ -101,6 +101,7 @@ header h1 {
     border-radius: 12px;
     cursor: crosshair;
     width: 500px;
+    outline: none;
 }
 
 .btn:hover {
@@ -115,7 +116,8 @@ header h1 {
     padding: 7px;
     border-radius: 12px;
     cursor: crosshair;
-    width: 160px;
+    width: 195px;
+    outline: none;
     
 }
 
@@ -160,6 +162,10 @@ header h1 {
 .hiscores {
     text-align: center;
     
+}
+
+.hiscores h2 {
+    padding-top: 20px;
 }
 
 #hiscore-list li {
