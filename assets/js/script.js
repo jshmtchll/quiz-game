@@ -36,6 +36,7 @@ var playerInitials = document.querySelector("#initial-input");
 var viewHighscoresEl = document.querySelector("#hiscores");
 var highscoreListEl = document.querySelector("#hiscore-list");
 var highScoreArray = [];
+var storedHighScores = []; //coming from localstorage
 
 var timerInterval; //declared here so i can stop it later in stopTimer()
 
@@ -101,16 +102,16 @@ function startQuiz() {
             }
         },1000);
 
-        displayQuestions()
+        displayQuestions() //displays questions after timer begins
 }
 
 ///////////////////////function for displaying the questions to tha page////////////
 function displayQuestions() {
     
-    if (questions[quizQuestions] === undefined) {
-        UserHighScore()
+     if (questions[quizQuestions] === undefined) {
+         UserHighScore()
         
-    }
+     }
 
     questionEl.textContent = questions[quizQuestions].question;
     asw1Btn.textContent = questions[quizQuestions].answers[0];
@@ -165,20 +166,26 @@ function checkAnswer(event) {
     }
 
     
-    setTimeout(displayQuestions, 2000);
+    setTimeout(displayQuestions, 2000); //adds 2s between questions so user can see right or wrong
     
 
 }
 //high score submit function
 function UserHighScore() {
+    
+    playerScore.textContent = secondsLeft; //displays user score
+
     scoreEl.style.display = "block";
     viewHighscoresEl.style.display = "block";
     questionsEl.style.display = "none";
 
     stopTimer();
+    getStorage();
     
-
-    playerScore.textContent = secondsLeft; //displays user score
+}
+    
+    function savingScore() {
+    
     
     var userInitials = playerInitials.value.toUpperCase(); //captures users initials and forces uperrcase
     console.log(userInitials);
@@ -193,10 +200,29 @@ function UserHighScore() {
     highscoreListEl.innerHTML = "";
     for (var i = 0; i < highScoreArray.length; i++) {
         var li = document.createElement("li");
-        li.textContent = "Initials: " + highScoreArray[i].initials + "   Score: " + highScoreArray[i].score;
+        li.textContent = "Initials: " + highScoreArray[i].initials + " ------------ " + " Score: " + highScoreArray[i].score;
         highscoreListEl.appendChild(li);
-    }
 
+    }
+    //add or get stored highscores from storage
+    addToStorage();
+    
+}
+
+//stores the highScoreArray as a string to local storage
+function addToStorage() {
+    localStorage.setItem("highScoreArray", JSON.stringify(highScoreArray));
+}
+
+function getStorage() {
+    //grab the high scores from local storage & parse into an object again
+    var storedHighScores = JSON.parse(localStorage.getItem("highScoreArray"));
+    console.log(storedHighScores);
+
+    if (storedHighScores !== null) {
+        highScoreArray = storedHighScores;
+        console.log(highScoreArray);
+    }
 }
 
 function stopTimer() {
@@ -214,6 +240,10 @@ startBtn.addEventListener("click", function(){
     startQuiz()
 })
 
-submitBtn.addEventListener("click", UserHighScore)
+submitBtn.addEventListener("click", savingScore)
+
+
+
+
 
 

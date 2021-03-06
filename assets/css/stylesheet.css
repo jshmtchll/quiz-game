@@ -122,14 +122,31 @@ header h1 {
     margin-top: 20px;
 }
 
+#correct-wrong p {
+    font-size: 45px;
+}
+
                                                                   /* submit score */
 .final-score {
     text-align: center;
+    padding-top: 40px;
+}
+
+.final-score h2 {
+    font-size: 45px;
+    margin-bottom: 20px;
 }
 
                                                                    /*hiscore list*/
 .hiscores {
     text-align: center;
+    
+}
+
+#hiscore-list li {
+    font-weight: bold;
+    line-height: 30px;
+    
 }
 
 /*hide these sections until called on in the js file*/
