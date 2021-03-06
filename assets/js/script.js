@@ -102,7 +102,7 @@ function startQuiz() {
             }
         },1000);
 
-        displayQuestions() //displays questions after timer begins
+        displayQuestions(quizQuestions) //displays questions after timer begins
 }
 
 ///////////////////////function for displaying the questions to tha page////////////
@@ -236,11 +236,15 @@ function stopTimer() {
 
 
 ////////////////////////event listeners//////////////////////
-startBtn.addEventListener("click", function(){
-    startQuiz()
-})
+startBtn.addEventListener("click", startQuiz)
 
 submitBtn.addEventListener("click", savingScore)
+
+restartBtn.addEventListener("click", function () {
+    window.location.href="../index.html"
+});
+
+
 
 
 

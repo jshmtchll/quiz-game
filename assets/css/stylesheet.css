@@ -149,6 +149,10 @@ header h1 {
     
 }
 
+#play-again {
+    margin-top: 20px;
+}
+
 /*hide these sections until called on in the js file*/
 #questions,
 #correct-wrong,
